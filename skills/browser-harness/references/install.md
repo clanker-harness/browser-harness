@@ -5,7 +5,7 @@ This is a **one-time prerequisite**, not part of the regular AI workflow. Do it 
 ## Install the command
 
 ```bash
-uv tool install --python 3.12 --upgrade --force browser-harness
+uv tool install --python 3.12 --upgrade --force git+https://github.com/clanker-harness/browser-harness
 command -v browser-harness   # should print a path
 ```
 

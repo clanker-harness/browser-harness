@@ -10,7 +10,7 @@ Use once. For browser work, read `SKILL.md`.
 ## Fast Path
 
 ```bash
-uv tool install --python 3.12 --upgrade --force browser-harness
+uv tool install --python 3.12 --upgrade --force git+https://github.com/clanker-harness/browser-harness
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills/browser-harness"
 browser-harness skill > "${CODEX_HOME:-$HOME/.codex}/skills/browser-harness/SKILL.md"
 browser-harness <<'PY'

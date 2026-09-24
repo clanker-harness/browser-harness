@@ -22,8 +22,8 @@ classifiers = [
     "Topic :: Software Development :: Testing",
 ]
 dependencies = [
-    "cdp-use==1.4.5",
-    "fetch-use==0.4.0",
+    "cdp-use @ git+https://github.com/clanker-harness/cdp-use@v1.4.5",
+    "fetch-use @ git+https://github.com/clanker-harness/fetch-use@v0.4.0",
     "pillow==12.3.0",
     "websockets==15.0.1",
 ]
@@ -36,9 +36,9 @@ browser-harness = "browser_harness.run:main"
 browser-harness-mcp = "browser_harness.mcp_cli:main"
 
 [project.urls]
-Homepage = "https://github.com/browser-use/browser-harness"
-Repository = "https://github.com/browser-use/browser-harness"
-Issues = "https://github.com/browser-use/browser-harness/issues"
+Homepage = "https://github.com/clanker-harness/browser-harness"
+Repository = "https://github.com/clanker-harness/browser-harness"
+Issues = "https://github.com/clanker-harness/browser-harness/issues"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

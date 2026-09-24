@@ -6,8 +6,8 @@
     "name": "Browser Use",
     "url": "https://browser-use.com"
   },
-  "homepage": "https://github.com/browser-use/browser-harness",
-  "repository": "https://github.com/browser-use/browser-harness",
+  "homepage": "https://github.com/clanker-harness/browser-harness",
+  "repository": "https://github.com/clanker-harness/browser-harness",
   "license": "MIT",
   "keywords": ["browser", "automation", "cdp", "chrome", "scraping", "screenshot", "browser-use", "browser-harness"]
 }

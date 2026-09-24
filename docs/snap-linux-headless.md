@@ -4,7 +4,7 @@
 
 Ubuntu and several other distributions ship Chromium as a [Snap](https://snapcraft.io/) package. Snap runs apps in a confined environment. Chrome’s remote debugging endpoint must bind on the host network where the `browser-harness` daemon can reach it. Snap’s sandbox and filesystem layout commonly prevent that from working the way a normal `.deb` Chrome install does, so the harness may see no usable DevTools port even when Chromium appears to run.
 
-Symptoms: `browser-harness --doctor` shows Chrome running, but the daemon never attaches, or CDP handshake fails without an obvious cause. [Issue #191](https://github.com/browser-use/browser-harness/issues/191) discusses this class of setup problem.
+Symptoms: `browser-harness --doctor` shows Chrome running, but the daemon never attaches, or CDP handshake fails without an obvious cause. [Issue #191](https://github.com/clanker-harness/browser-harness/issues/191) discusses this class of setup problem.
 
 ## Install Google Chrome natively (Ubuntu example)
 

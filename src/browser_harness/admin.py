@@ -127,7 +127,9 @@ _load_env()
 
 NAME = os.environ.get("BU_NAME", "default")
 BU_API = "https://api.browser-use.com/api/v3"
-PYPI_JSON = "https://pypi.org/pypi/browser-harness/json"
+# clanker-harness fork: the latest release is whatever version our fork's
+# main branch declares, not upstream's PyPI release.
+LATEST_PYPROJECT = "https://raw.githubusercontent.com/clanker-harness/browser-harness/main/pyproject.toml"
 VERSION_CACHE = paths.config_dir() / "version-cache.json"
 VERSION_CACHE_TTL = 24 * 3600
 DOCTOR_TEXT_LIMIT = 140
@@ -495,7 +497,7 @@ def _doctor_probe_chrome_binary_for_snap():
 
 
 def _snap_linux_headless_doc_url():
-    return "https://github.com/browser-use/browser-harness/blob/main/docs/snap-linux-headless.md"
+    return "https://github.com/clanker-harness/browser-harness/blob/main/docs/snap-linux-headless.md"
 
 
 def run_doctor_fix_snap():
@@ -1147,13 +1149,16 @@ def _cache_write(data):
 
 
 def _latest_release_tag(force=False):
-    """Return latest PyPI version, or None. Cached for 24h to avoid hammering PyPI."""
+    """Return the fork's latest version, or None. Cached for 24h."""
     cache = _cache_read()
     now = time.time()
     if not force and cache.get("tag") and now - cache.get("fetched_at", 0) < VERSION_CACHE_TTL:
         return cache["tag"]
     try:
-        tag = json.loads(urllib.request.urlopen(PYPI_JSON, timeout=5).read()).get("info", {}).get("version") or ""
+        import tomllib
+
+        pyproject = tomllib.loads(urllib.request.urlopen(LATEST_PYPROJECT, timeout=5).read().decode("utf-8"))
+        tag = pyproject.get("project", {}).get("version") or ""
     except Exception:
         return cache.get("tag")  # fall back to last known
     tag = tag.lstrip("v")
@@ -1565,7 +1570,7 @@ def run_update(yes=False):
             if not _uv_manages_browser_harness():
                 print(
                     "if you installed with pip or pipx, upgrade with: "
-                    "uv tool install --python 3.12 --upgrade --force browser-harness",
+                    "uv tool install --python 3.12 --upgrade --force git+https://github.com/clanker-harness/browser-harness",
                     file=sys.stderr,
                 )
             return tool_upgrade.returncode
